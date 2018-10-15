@@ -1,0 +1,36 @@
+<resources xmlns:android="http://schemas.android.com/tools">
+    <string name="app_name">Tik Tok Downloader</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_saves">Downloads</string>
+    <string name="fb_ads_inter">235389497129299_235389723795943</string>
+
+
+    <string name="header">Download TikTok Videos</string>
+    <string name="txt">Fastest Tik Tok / Musical.ly video and downloader</string>
+    <string name="fini">Download Complete</string>
+
+    <string name="open">Open Tik Tok</string>
+    <string name="how">How to use?</string>
+
+    <string name="message">Just open tik tok app and click copy link to download video</string>
+    <string name="empty">No downloads yet</string>
+    <string name="gas_toolbar">My Downloads</string>
+    <string name="heading">Download Tik Tok Videos</string>
+
+    <string name="btn_play">Play Video</string>
+
+
+    <string name="cave_label">Downloading...</string>
+    <string name="cave_title_holder">♫ Jamie Sharp - original  sound - thejamiesharp</string>
+    <string name="empty_text">No downloads yet</string>
+
+
+
+    <string name="headings">TikTok Downloader is on</string>
+    <string name="sub_headings">Copy tik tok link to download video</string>
+
+
+
+    <string name="howtos">HOW TO USE</string>
+    <string name="savers">DOWNLOADS</string>
+</resources>
