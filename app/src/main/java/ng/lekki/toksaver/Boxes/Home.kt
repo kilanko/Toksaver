@@ -24,31 +24,10 @@ class Home : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val design = inflater.inflate(R.layout.frag_solid, container, false)
 
-        videoview = design.videoView
-
-
-        videoview!!.setOnPreparedListener(object : MediaPlayer.OnPreparedListener{
-            override fun onPrepared(mp: MediaPlayer?) {
-
-                mp!!.setVolume(0f,0f)
-                mp.isLooping = true
-                mp.start()
-
-
-            }
-
-
-        })
-
-        val uri = Uri.parse("android.resource://${activity!!.packageName}/" + R.raw.maji)
-        videoview!!.setVideoURI(uri)
 
 
 
-
-
-
-        design.opens.setOnClickListener {
+        design.btn_open.setOnClickListener {
 
             phoneTweet(activity!!.applicationContext,"com.zhiliaoapp.musically")
 

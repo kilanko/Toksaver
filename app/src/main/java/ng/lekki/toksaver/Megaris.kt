@@ -1,6 +1,9 @@
 package ng.lekki.toksaver
 
 import android.Manifest
+import android.app.DownloadManager
+import android.app.DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.MediaScannerConnection
@@ -12,12 +15,14 @@ import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.Toast
 import com.downloader.*
+import com.esafirm.rxdownloader.RxDownloader
 import com.facebook.ads.Ad
 import com.facebook.ads.AdError
 import com.facebook.ads.InterstitialAd
 import com.facebook.ads.InterstitialAdListener
 import com.pedro.library.AutoPermissions
 import com.pedro.library.AutoPermissionsListener
+import io.reactivex.Observer
 import kotlinx.android.synthetic.main.jonah.*
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.android.UI
@@ -27,6 +32,8 @@ import org.json.JSONObject
 import org.jsoup.Jsoup
 import java.io.File
 import java.util.regex.Pattern
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 
 class Megaris : AppCompatActivity(), AutoPermissionsListener {
 
@@ -79,7 +86,7 @@ class Megaris : AppCompatActivity(), AutoPermissionsListener {
 
             override fun onAdLoaded(p0: Ad?) {
 
-                fbAds!!.show();
+                fbAds!!.show()
 
             }
 
@@ -225,7 +232,7 @@ class Megaris : AppCompatActivity(), AutoPermissionsListener {
 
             }.await()
 
-            keep("https:$playURL",nameURL,nicky)
+            downloader("https:$playURL",nameURL,nicky)
 
         }
     }
@@ -285,6 +292,11 @@ class Megaris : AppCompatActivity(), AutoPermissionsListener {
                             override fun onScanCompleted(p0: String?, mediaURI: Uri?) {
 
 
+                                runOnUiThread {
+
+
+                                }
+
 
 
 
@@ -331,5 +343,65 @@ class Megaris : AppCompatActivity(), AutoPermissionsListener {
         close.visibility = View.VISIBLE
 
     }
+
+
+
+
+
+
+    fun downloader(downloadURL:String, videoName:String,nickNames:String){
+
+        Toast.makeText(applicationContext,""+getString(R.string.cave_label),Toast.LENGTH_LONG).show()
+        val rxDownloader = RxDownloader(applicationContext)
+        val desc = getString(R.string.saving)
+        val timeStamp =  System.currentTimeMillis()
+        val file = "tiktok_"+"_"+timeStamp
+        var ext = "mp4"
+        val name = file + "." + ext
+        val dex = File(Environment.getExternalStorageDirectory().absolutePath, "toksave")
+        if (!dex.exists())
+            dex.mkdirs()
+
+        val Download_Uri = Uri.parse(downloadURL)
+        val downloadManager =  getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        val request =  DownloadManager.Request(Download_Uri);
+        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE);
+        request.setAllowedOverRoaming(true)
+        request.setTitle( "♫ $videoName")
+        request.setVisibleInDownloadsUi(true)
+        request.setDescription(desc)
+        request.setVisibleInDownloadsUi(true)
+        request.allowScanningByMediaScanner()
+        request.setNotificationVisibility(VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+        request.setDestinationInExternalPublicDir("/toksave",  name)
+
+        rxDownloader.download(request).subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(object: Observer<String> {
+                    override fun onComplete() {
+
+
+                    }
+
+                    override fun onError(e: Throwable) {
+
+
+                    }
+
+                    override fun onNext(t: String) {
+
+
+                    }
+
+                    override fun onSubscribe(d: Disposable) {
+
+                       finishAndRemoveTask()
+
+                    }
+
+
+                })
+
+    }
+
 
 }

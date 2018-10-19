@@ -77,7 +77,7 @@ class TokService : Service() {
             val board = this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             board.addPrimaryClipChangedListener {
                 val mainText = board.primaryClip.getItemAt(0).text.toString()
-                if (mainText.contains("tiktok.com/v/")) {
+                if (mainText.contains("tiktok.com/")) {
 
                     if (!clipBox.contains(mainText)) {
 

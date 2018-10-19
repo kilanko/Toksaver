@@ -33,4 +33,22 @@
 
     <string name="howtos">HOW TO USE</string>
     <string name="savers">DOWNLOADS</string>
+
+
+
+
+
+    <string name="guide_b">STEP 1</string>
+    <string name="guide_c">STEP 2</string>
+    <string name="guide_d">STEP 3</string>
+
+    <string name="guide_name_a">Tap to open TikTok</string>
+    <string name="guide_name_b">Tap on share icon on any video</string>
+    <string name="guide_name_c">Tap on \'Copy Link\' icon</string>
+    <string name="guide_name_d">Yay! the video will start downloading</string>
+    <string name="btn_open">Open Tiktok</string>
+    <string name="placeholder">Click here to open Tiktok</string>
+
+    <string name="saving">Downloading video</string>
+
 </resources>

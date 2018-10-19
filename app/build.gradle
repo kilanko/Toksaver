@@ -12,8 +12,8 @@ android {
         applicationId "ng.lekki.toksaver"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 2
-        versionName '1.0.1'
+        versionCode 3
+        versionName '1.0.2'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -48,4 +48,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.devbrackets.android:exomedia:4.2.2'
     implementation 'com.facebook.android:audience-network-sdk:4.99.1'
+    implementation 'com.github.paolorotolo:appintro:v4.2.3'
+    implementation 'com.github.esafirm:rxdownloader:2.0.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+
 }
