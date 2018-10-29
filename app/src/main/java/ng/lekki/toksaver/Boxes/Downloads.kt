@@ -254,7 +254,7 @@ class Downloads : Fragment(), AutoPermissionsListener {
 
     fun createFolder(){
 
-        val dex = File( Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "toksave")
+        val dex = File( Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "/toksave")
         if (!dex.exists())
             dex.mkdirs()
 

@@ -17,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:noHistory="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -57,7 +59,13 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".AppIntros"></activity>
+        <activity android:name=".Downloaded">
+
+            <meta-data
+                android:name="@string/permissions_loader_meta_key"
+                android:value="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+        </activity>
     </application>
 
 </manifest>

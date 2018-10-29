@@ -21,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_tok" />
+        app:srcCompat="@drawable/ic_download" />
 
     <TextView
         android:id="@+id/textView"
@@ -53,6 +53,24 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:text="@string/btn_open" />
+
+
+    <Button
+        android:id="@+id/btn_how"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/colorWhite"
+        android:drawableStart="@drawable/ic_think"
+        android:text="@string/how"
+        android:textColor="#333 "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_open"
         tools:text="@string/btn_open" />
 
 

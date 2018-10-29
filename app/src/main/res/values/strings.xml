@@ -20,7 +20,7 @@
     <string name="btn_play">Play Video</string>
 
 
-    <string name="cave_label">Downloading...</string>
+    <string name="cave_label">Download Started</string>
     <string name="cave_title_holder">♫ Jamie Sharp - original  sound - thejamiesharp</string>
     <string name="empty_text">No downloads yet</string>
 
@@ -28,7 +28,7 @@
 
     <string name="headings">TikTok Downloader is on</string>
     <string name="sub_headings">Copy tik tok link to download video</string>
-
+    <string name="none">No Saved Videos</string>
 
 
     <string name="howtos">HOW TO USE</string>
@@ -36,7 +36,8 @@
 
 
 
-
+    <string name="menu_save">Downloads</string>
+    <string name="menu_rate">Rate App</string>
 
     <string name="guide_b">STEP 1</string>
     <string name="guide_c">STEP 2</string>
@@ -47,8 +48,9 @@
     <string name="guide_name_c">Tap on \'Copy Link\' icon</string>
     <string name="guide_name_d">Yay! the video will start downloading</string>
     <string name="btn_open">Open Tiktok</string>
-    <string name="placeholder">Click here to open Tiktok</string>
+    <string name="placeholder">Download videos from TikTok</string>
 
+    <string name="my">Downloads</string>
     <string name="saving">Downloading video</string>
 
 </resources>

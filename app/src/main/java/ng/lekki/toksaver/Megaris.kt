@@ -22,6 +22,7 @@ import com.facebook.ads.InterstitialAd
 import com.facebook.ads.InterstitialAdListener
 import com.pedro.library.AutoPermissions
 import com.pedro.library.AutoPermissionsListener
+import com.roger.catloadinglibrary.CatLoadingView
 import io.reactivex.Observer
 import kotlinx.android.synthetic.main.jonah.*
 import kotlinx.coroutines.experimental.CommonPool
@@ -39,16 +40,19 @@ class Megaris : AppCompatActivity(), AutoPermissionsListener {
 
     var nicky = ""
     var museLink = ""
-    var trueLink:ArrayList<String>? = null
+    var trueLink: ArrayList<String>? = null
     var fbAds: InterstitialAd? = null
+    var catView:CatLoadingView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.megaris)
 
-        val pr = PRDownloaderConfig.newBuilder()
-                .setDatabaseEnabled(true)
-                .build()
-        PRDownloader.initialize(getApplicationContext(), pr)
+
+
+        catView = CatLoadingView()
+
+        catView!!.show(supportFragmentManager, "")
+
 
 
         val intents = intent
@@ -59,17 +63,11 @@ class Megaris : AppCompatActivity(), AutoPermissionsListener {
 
             saveVideo(trueLink!![0])
 
-        }else{
+        } else {
 
             AutoPermissions.loadActivityPermissions(this@Megaris, 1)
 
 
-        }
-
-
-        close.setOnClickListener {
-
-            finishAndRemoveTask()
         }
 
 
@@ -86,7 +84,7 @@ class Megaris : AppCompatActivity(), AutoPermissionsListener {
 
             override fun onAdLoaded(p0: Ad?) {
 
-                fbAds!!.show()
+                fbAds!!.show();
 
             }
 
@@ -117,6 +115,11 @@ class Megaris : AppCompatActivity(), AutoPermissionsListener {
 
         // Load ads into Interstitial Ads
         fbAds!!.loadAd()
+
+
+
+
+
     }
 
 
@@ -243,81 +246,6 @@ class Megaris : AppCompatActivity(), AutoPermissionsListener {
 
 
 
-    fun keep(downloadURL:String, videoName:String,nickNames:String){
-        val lastURL ="$downloadURL"
-        label.text = nickNames
-        titled.text = "♫ $videoName"
-        val dirPath = createDirectoryAndSaveFile()
-        val fileDesc = nickNames + "-" +videoName
-        val end = ".mp4"
-        val patornking = "$fileDesc" + end
-
-        val filepath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).absolutePath + "/toksave/$patornking"
-        val look = arrayOf(filepath)
-
-
-        val downloadId = PRDownloader.download(lastURL, dirPath, patornking)
-                .build()
-                .setOnProgressListener(object : OnProgressListener {
-                    override fun onProgress(progress: Progress) {
-                        val progressPercent = progress.currentBytes * 100 / progress.totalBytes
-                        val total = progressPercent.toInt()
-                        progress_status.text = "$total%"
-                        progressBar.isIndeterminate = false
-                        progressBar.progress = total
-
-                    }
-                })
-                .setOnStartOrResumeListener(object: OnStartOrResumeListener {
-                    override fun onStartOrResume() {
-
-                        showControls()
-                    }
-
-                })
-                .start(object : OnDownloadListener {
-                    override fun onError(error: Error?) {
-
-
-                    }
-
-
-                    override fun onDownloadComplete() {
-
-                        play_btn.visibility = View.VISIBLE
-                        progress_status.text = getString(R.string.fini)
-                        progressBar.visibility =View.GONE
-
-                        MediaScannerConnection.scanFile(this@Megaris, look, null, object : MediaScannerConnection.OnScanCompletedListener {
-                            override fun onScanCompleted(p0: String?, mediaURI: Uri?) {
-
-
-                                runOnUiThread {
-
-
-                                }
-
-
-
-
-                                play_btn.setOnClickListener {
-
-                                    val intent = Intent(Intent.ACTION_VIEW, mediaURI)
-                                    intent.setDataAndType(mediaURI, "video/mp4")
-                                    startActivity(intent)
-                                }
-
-
-                            }
-
-
-                        })
-
-                    }
-
-                })
-
-    }
 
 
     fun createDirectoryAndSaveFile():String {
@@ -330,20 +258,6 @@ class Megaris : AppCompatActivity(), AutoPermissionsListener {
         }
         return  direct.absolutePath
     }
-
-
-    //show controls
-    fun showControls(){
-        covrIcon.visibility = View.VISIBLE
-        progress_status.visibility  = View.VISIBLE
-        titled.visibility = View.VISIBLE
-        progression.visibility = View.GONE
-        progressBar.visibility = View.VISIBLE
-        progress_status.visibility = View.VISIBLE
-        close.visibility = View.VISIBLE
-
-    }
-
 
 
 
@@ -373,7 +287,7 @@ class Megaris : AppCompatActivity(), AutoPermissionsListener {
         request.setVisibleInDownloadsUi(true)
         request.allowScanningByMediaScanner()
         request.setNotificationVisibility(VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-        request.setDestinationInExternalPublicDir("/toksave",  name)
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS + "/toksave",  name)
 
         rxDownloader.download(request).subscribeOn(AndroidSchedulers.mainThread())
                 .subscribe(object: Observer<String> {
